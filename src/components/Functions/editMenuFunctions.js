@@ -26,7 +26,7 @@ const editMenuFunctions = {
             }
         }
         
-    }
+    },
 }
 
 export default editMenuFunctions;

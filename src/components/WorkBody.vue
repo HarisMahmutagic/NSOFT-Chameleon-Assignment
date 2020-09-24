@@ -7,8 +7,8 @@
 
       <div title="Add new label" id="plusButton" v-on:click="add(increasedId,toDoListDatas)">+</div>
 
-      <div id="content">  
-        <div class="datas" v-for="data in toDoListDatas" :key="data.id">
+      <draggable :list="toDoListDatas" group="tasks" id="content">  
+        <div  class="datas" v-for="data in toDoListDatas" :key="data.id">
           <img id="checkboxInactive" src="../assets/checkbox.png" v-on:click="moveToDone(toDoListDatas, data.id, doneListDatas)">
           <input  class="inputText" v-model="data.text" v-if="data.image === false">
           <img class="imageInList" :src="data.text" v-if="data.image === true" >
@@ -19,8 +19,8 @@
               </label>
               <img title="Delete" id="deleteLabel1" src="../assets/trash.png" v-on:click="deleteOneFromToDoList(toDoListDatas, data.id)">     
             </div>
-        </div>
-      </div>
+        </div >
+      </draggable>
     </div>
 
     <div id="doneList"  >
@@ -29,27 +29,26 @@
 
       <div title="Delete all from Done List" id="recycle"><a id="symbol" v-on:click="deleteAllLabels(doneListDatas)">&#128465;</a></div>
 
-      <div class="doneData"  >
+      <draggable :list="doneListDatas" group="tasks" class="doneData"  >
         <div id="doneFinalList" v-for="data in doneListDatas" :key="data.id">   
             <img id="checkboxActive" src="../assets/checkbox active.png" v-on:click="moveFromDone(doneListDatas, data.id, toDoListDatas)">
             <div id="doneLabels" v-if="data.image === false">{{data.text}}</div>
             <img class="imageInList" :src="data.text" v-if="data.image === true">
             <img id="editDoneList" src="../assets/dots.png" v-on:click="openOrCloseEditMenu(toDoListDatas, data.id, doneListDatas)">
-            <div v-bind:class="{openToDoMenu:data.editMenu , closeToDoMenu:!data.editMenu}">
+            <div v-bind:class="{openDoneMenu:data.editMenu , closeDoneMenu:!data.editMenu}">
               <img id="deleteLabel" src="../assets/trash.png" v-on:click="deleteOneFromToDoList(doneListDatas, data.id)">
             </div>
         </div>
-      </div>       
+      </draggable>       
 
     </div> 
-
-<p>{{toDoListDatas}}</p>
-
+<p>{{doneListDatas}}</p>
   </div>
 
 </template>
 
 <script>
+import draggable from 'vuedraggable';
 import addButtonFunctions from '../components/Functions/addButtonFunctions';
 import editMenuFunctions from '../components/Functions/editMenuFunctions';
 import moveFunctions from '../components/Functions/moveFunctions';
@@ -58,7 +57,9 @@ import uploadImage from '../components/Functions/uploadImage';
 
 export default {
   name: 'WorkBody',
-  
+  components: {
+    draggable
+  },
   data() {
     return {
      toDoListDatas: [],
@@ -85,6 +86,7 @@ export default {
     },
 
     deleteAllLabels(array) {
+      editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
       deleteFunctions.deleteAll(array);
     },
 
@@ -99,7 +101,7 @@ export default {
     uploadImages(e, id, array, imageFile){
       uploadImage.onInputChange(e, id, array, imageFile);
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
-    }
+    },
   }
 }
 
@@ -158,7 +160,7 @@ input:focus{
   border-radius: 2%;
   display: grid;
   grid-template-columns: 80% 20%;
-  grid-template-rows: 13% 87%;
+  grid-template-rows: 16% 84%;
 }
 
 .doneData {
@@ -315,7 +317,7 @@ input:focus{
 
 #doneFinalList {
   width: 30vh;
-  height: 8vh;
+  height: 10vh;
   background-color: none;
   margin-top:5%;
   width: 110%;
@@ -404,8 +406,8 @@ input:focus{
   grid-row-start: 1;
   grid-row-end: 2;
   margin: auto;
-  width: 50%;
-  height: 50%;
+  width: 35%;
+  height: 35%;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
@@ -452,15 +454,14 @@ input:focus{
   grid-row-end: 2;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   margin: auto;
-  width: 40%;
-  height: 70%;
+  width: 25%;
+  height: 65%;
   background-image: url('../assets/picture.png');
   background-repeat: no-repeat;
 }
 
 #addPicture:hover {
   cursor: pointer;
-  background-color: rgb(123, 185, 255);
 }
 
 #deleteLabel1 {
@@ -470,8 +471,8 @@ input:focus{
   grid-row-end: 3;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   margin: auto;
-  width: 35%;
-  height: 35%;
+  width: 25%;
+  height: 25%;
 }
 
 #deleteLabel1:hover {
@@ -485,6 +486,7 @@ input:focus{
 
 .imageInList {
  max-width: 100%;
+ overflow: auto;
 
 }
 

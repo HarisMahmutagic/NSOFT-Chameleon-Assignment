@@ -16,8 +16,9 @@
           <label id="text">Click on checkbox or drag and drop to done</label>
       </div>
 
-      <div id="Logout" v-on:click="logOut" v-if="LogoutActivate">
-          <img id="logoutImg" src="../assets/logout.jpg">Log out
+      <div id="Logout"  v-if="LogoutActivate">
+          <img id="logoutImg" v-on:click="logOut" src="../assets/logout.jpg">
+          <a id="logOutText" v-on:click="logOut">Log out</a> 
       </div>
 
   </div>
@@ -128,10 +129,6 @@ export default {
   }
 }
 
-#Logout:hover {
-    cursor: pointer;
-}
-
 #logoimg {
     width: 20vh;
     height: 5vh;
@@ -180,6 +177,18 @@ export default {
     border: 1px solid rgb(206, 206, 206);
     border-radius: 5%;
     margin-left: 30%;  
+}
+
+#logoutImg:hover {
+  cursor: pointer;
+}
+
+#logOutText {
+  font-size: 2vh;
+}
+
+#logOutText:hover {
+  cursor: pointer;
 }
 
 #title {
