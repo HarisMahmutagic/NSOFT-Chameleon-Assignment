@@ -1,94 +1,103 @@
 <template>
-
   <div class="loginForm">
-
-    <img id="logo" src="../assets/logo.png">
+    <img id="logo" src="../assets/logo.png" />
 
     <div id="emailForm">
       <md-field>
         <label>Email</label>
         <md-input v-model="EmailAddress" id="emailField"></md-input>
-          <span id="validEmail" v-if="validEmail===false">Email is required</span>
-          <span id="validEmail" v-if="validEmail===true">Email adress is not valid</span>
+        <span id="validEmail" v-if="validEmail === false"
+          >Email is required</span
+        >
+        <span id="validEmail" v-if="validEmail === true"
+          >Email adress is not valid</span
+        >
       </md-field>
     </div>
 
     <div id="passwordForm">
       <md-field>
         <label>Password</label>
-        <md-input type="password" v-model="Password" id="passwordField"></md-input>
-        <span id="validPassword" v-if="validPassword===false">Password is required</span>
-        <span id="validPassword" v-if="validPassword===true">Password is not valid</span>
+        <md-input
+          type="password"
+          v-model="Password"
+          id="passwordField"
+        ></md-input>
+        <span id="validPassword" v-if="validPassword === false"
+          >Password is required</span
+        >
+        <span id="validPassword" v-if="validPassword === true"
+          >Password is not valid</span
+        >
       </md-field>
     </div>
 
     <div id="rememberUser">
-      <input id="checkBoxRemember" type="checkbox" v-model="rememberUser">
-      <label id="checkRemember" for="checkRemember" v-on:click="checkRememberUser">Remember me</label>
+      <input id="checkBoxRemember" type="checkbox" v-model="rememberUser" />
+      <label
+        id="checkRemember"
+        for="checkRemember"
+        v-on:click="checkRememberUser"
+        >Remember me</label
+      >
     </div>
 
     <label id="forgotPassword">Forgot password ?</label>
 
     <div id="loginFooter">
-      <div id="loginButton" v-on:click="signIn(EmailAddress, Password)">Sign in</div>
+      <div id="loginButton" v-on:click="signIn(EmailAddress, Password)">
+        Sign in
+      </div>
     </div>
-
   </div>
-
 </template>
 
 <script>
+import checkFunctions from "../components/Functions/checkFunctions";
+import generateFunctions from "../components/Functions/generateFunctions";
 
-import checkFunctions from '../components/Functions/checkFunctions';
-import generateFunctions from '../components/Functions/generateFunctions';
-
-import { mapActions } from 'vuex';
+import { mapActions } from "vuex";
 
 export default {
-  name: 'Login',
+  name: "Login",
 
   data() {
     return {
-      EmailAddress:'',
-      Password:'',
-      validEmail:0,
-      validPassword:0,
-      rememberUser:false,
-    }
+      EmailAddress: "",
+      Password: "",
+      validEmail: 0,
+      validPassword: 0,
+      rememberUser: false,
+    };
   },
-  methods:{
-    ...mapActions(
-      [
-        'fetchEmailAddress',
-        'fetchUserName',
-        'fetchRememberUser',
-        'fetchLogedIn'
-      ]
-    ),
+  methods: {
+    ...mapActions([
+      "fetchEmailAddress",
+      "fetchUserName",
+      "fetchRememberUser",
+      "fetchLogedIn",
+    ]),
 
-    checkRememberUser(){
-      this.rememberUser=!this.rememberUser;
+    checkRememberUser() {
+      this.rememberUser = !this.rememberUser;
     },
 
-    signIn(email, password){
+    signIn(email, password) {
       this.validEmail = checkFunctions.checkEmail(email);
       this.validPassword = checkFunctions.checkPassword(password);
-      if(this.validEmail === 0 && this.validPassword === 0) {
-      this.fetchEmailAddress(email);
-      this.fetchUserName(generateFunctions.generateUserName(email)); // Username will be all characters before @
-      this.fetchRememberUser(this.rememberUser);
-      this.fetchLogedIn(true); // Alert that user is loged in. Clicking to reload page will be automatically loged out..
-      this.$router.push('/Workspace');
+      if (this.validEmail === 0 && this.validPassword === 0) {
+        this.fetchEmailAddress(email);
+        this.fetchUserName(generateFunctions.generateUserName(email)); // Username will be all characters before @
+        this.fetchRememberUser(this.rememberUser);
+        this.fetchLogedIn(true); // Alert that user is loged in. Clicking to reload page will be automatically loged out..
+        this.$router.push("/Workspace");
       }
     },
-
-  }
+  },
 };
-
 </script>
 
 <style scoped>
-
 .loginForm {
   width: 50vh;
   height: 50vh;
@@ -130,7 +139,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 3;
-  grid-row-end: 4;  
+  grid-row-end: 4;
   font-size: 1.5vh;
   color: red;
 }
@@ -139,7 +148,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 4;
-  grid-row-end: 5;   
+  grid-row-end: 5;
 }
 
 #passwordField {
@@ -150,7 +159,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 5;
-  grid-row-end: 6;    
+  grid-row-end: 6;
   font-size: 1.5vh;
   margin-right: 5%;
   color: red;
@@ -160,7 +169,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 6;
-  grid-row-end: 7;  
+  grid-row-end: 7;
 }
 
 #checkRemember {
@@ -184,10 +193,10 @@ export default {
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 6;
-  grid-row-end: 7; 
+  grid-row-end: 7;
   font-size: 2vh;
   height: 4vh;
-  position:absolute;
+  position: absolute;
   right: 0;
 }
 
@@ -199,7 +208,7 @@ export default {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 7;
-  grid-row-end: 8; 
+  grid-row-end: 8;
 }
 
 #loginButton {
@@ -222,5 +231,4 @@ export default {
   background-color: rgb(93, 93, 228);
   cursor: pointer;
 }
-
 </style>

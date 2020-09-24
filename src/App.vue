@@ -6,7 +6,7 @@
 
 <style>
 #app {
-  font-family: 'Nunito Sans';
+  font-family: "Nunito Sans";
   height: 99%;
   width: 100%;
   top: 0;

@@ -1,78 +1,139 @@
 <template>
-
   <div class="WorkBody">
     <div id="toDoList">
-
       <div id="title">To-do list</div>
 
-      <div title="Add new label" id="plusButton" v-on:click="add(increasedId,toDoListDatas)">+</div>
+      <div
+        title="Add new label"
+        id="plusButton"
+        v-on:click="add(increasedId, toDoListDatas)"
+      >
+        +
+      </div>
 
-      <draggable :list="toDoListDatas" group="tasks" id="content">  
-        <div  class="datas" v-for="data in toDoListDatas" :key="data.id">
-          <img id="checkboxInactive" src="../assets/checkbox.png" v-on:click="moveToDone(toDoListDatas, data.id, doneListDatas)">
-          <input  class="inputText" v-model="data.text" v-if="data.image === false">
-          <img class="imageInList" :src="data.text" v-if="data.image === true" >
-          <img title="Edit" id="editToDoList" src="../assets/dots.png" v-on:click="openOrCloseEditMenu(toDoListDatas, data.id, doneListDatas)">
-            <div v-bind:class="{openToDoMenu:data.editMenu , closeToDoMenu:!data.editMenu}">
-              <label title="Add new Image"  id="addPicture">
-                <input type="file" id="inputForPicture" accept="image/*" @change="uploadImages($event, data.id, toDoListDatas, imageFile)">
-              </label>
-              <img title="Delete" id="deleteLabel1" src="../assets/trash.png" v-on:click="deleteOneFromToDoList(toDoListDatas, data.id)">     
-            </div>
-        </div >
+      <draggable :list="toDoListDatas" group="tasks" id="content">
+        <div class="datas" v-for="data in toDoListDatas" :key="data.id">
+          <img
+            id="checkboxInactive"
+            src="../assets/checkbox.png"
+            v-on:click="moveToDone(toDoListDatas, data.id, doneListDatas)"
+          />
+          <input
+            class="inputText"
+            v-model="data.text"
+            v-if="data.image === false"
+          />
+          <img
+            class="imageInList"
+            :src="data.text"
+            v-if="data.image === true"
+          />
+          <img
+            title="Edit"
+            id="editToDoList"
+            src="../assets/dots.png"
+            v-on:click="
+              openOrCloseEditMenu(toDoListDatas, data.id, doneListDatas)
+            "
+          />
+          <div
+            v-bind:class="{
+              openToDoMenu: data.editMenu,
+              closeToDoMenu: !data.editMenu,
+            }"
+          >
+            <label title="Add new Image" id="addPicture">
+              <input
+                type="file"
+                id="inputForPicture"
+                accept="image/*"
+                @change="
+                  uploadImages($event, data.id, toDoListDatas, imageFile)
+                "
+              />
+            </label>
+            <img
+              title="Delete"
+              id="deleteLabel1"
+              src="../assets/trash.png"
+              v-on:click="deleteOneFromToDoList(toDoListDatas, data.id)"
+            />
+          </div>
+        </div>
       </draggable>
     </div>
 
-    <div id="doneList"  >
-
+    <div id="doneList">
       <div id="doneTitle">Done</div>
 
-      <div title="Delete all from Done List" id="recycle"><a id="symbol" v-on:click="deleteAllLabels(doneListDatas)">&#128465;</a></div>
+      <div title="Delete all from Done List" id="recycle">
+        <a id="symbol" v-on:click="deleteAllLabels(doneListDatas)">&#128465;</a>
+      </div>
 
-      <draggable :list="doneListDatas" group="tasks" class="doneData"  >
-        <div id="doneFinalList" v-for="data in doneListDatas" :key="data.id">   
-            <img id="checkboxActive" src="../assets/checkbox active.png" v-on:click="moveFromDone(doneListDatas, data.id, toDoListDatas)">
-            <div id="doneLabels" v-if="data.image === false">{{data.text}}</div>
-            <img class="imageInList" :src="data.text" v-if="data.image === true">
-            <img id="editDoneList" src="../assets/dots.png" v-on:click="openOrCloseEditMenu(toDoListDatas, data.id, doneListDatas)">
-            <div v-bind:class="{openDoneMenu:data.editMenu , closeDoneMenu:!data.editMenu}">
-              <img id="deleteLabel" src="../assets/trash.png" v-on:click="deleteOneFromToDoList(doneListDatas, data.id)">
-            </div>
+      <draggable :list="doneListDatas" group="tasks" class="doneData">
+        <div id="doneFinalList" v-for="data in doneListDatas" :key="data.id">
+          <img
+            id="checkboxActive"
+            src="../assets/checkbox active.png"
+            v-on:click="moveFromDone(doneListDatas, data.id, toDoListDatas)"
+          />
+          <div id="doneLabels" v-if="data.image === false">{{ data.text }}</div>
+          <img
+            class="imageInList"
+            :src="data.text"
+            v-if="data.image === true"
+          />
+          <img
+            id="editDoneList"
+            src="../assets/dots.png"
+            v-on:click="
+              openOrCloseEditMenu(toDoListDatas, data.id, doneListDatas)
+            "
+          />
+          <div
+            v-bind:class="{
+              openDoneMenu: data.editMenu,
+              closeDoneMenu: !data.editMenu,
+            }"
+          >
+            <img
+              id="deleteLabel"
+              src="../assets/trash.png"
+              v-on:click="deleteOneFromToDoList(doneListDatas, data.id)"
+            />
+          </div>
         </div>
-      </draggable>       
-
-    </div> 
-<p>{{doneListDatas}}</p>
+      </draggable>
+    </div>
   </div>
-
 </template>
 
 <script>
-import draggable from 'vuedraggable';
-import addButtonFunctions from '../components/Functions/addButtonFunctions';
-import editMenuFunctions from '../components/Functions/editMenuFunctions';
-import moveFunctions from '../components/Functions/moveFunctions';
-import deleteFunctions from '../components/Functions/deleteFunctions';
-import uploadImage from '../components/Functions/uploadImage';
+import draggable from "vuedraggable";
+import addButtonFunctions from "../components/Functions/addButtonFunctions";
+import editMenuFunctions from "../components/Functions/editMenuFunctions";
+import moveFunctions from "../components/Functions/moveFunctions";
+import deleteFunctions from "../components/Functions/deleteFunctions";
+import uploadImage from "../components/Functions/uploadImage";
 
 export default {
-  name: 'WorkBody',
+  name: "WorkBody",
   components: {
-    draggable
+    draggable,
   },
   data() {
     return {
-     toDoListDatas: [],
-     doneListDatas: [],
-     increasedId:1,
-     imageFile: [],
-    }
+      toDoListDatas: [],
+      doneListDatas: [],
+      increasedId: 1,
+      imageFile: [],
+    };
   },
   methods: {
     add(id, toDoDatas) {
       this.increasedId++;
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
-      addButtonFunctions.addNewLabel(id, toDoDatas)
+      addButtonFunctions.addNewLabel(id, toDoDatas);
     },
 
     moveToDone(array1, id, array2) {
@@ -82,7 +143,7 @@ export default {
 
     moveFromDone(array1, id, array2) {
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
-      moveFunctions.moveFromDone(array1, id, array2)
+      moveFunctions.moveFromDone(array1, id, array2);
     },
 
     deleteAllLabels(array) {
@@ -95,20 +156,18 @@ export default {
     },
 
     openOrCloseEditMenu(array, id, array2) {
-      editMenuFunctions.editMenuOpenOrClose(array, id, array2)
+      editMenuFunctions.editMenuOpenOrClose(array, id, array2);
     },
 
-    uploadImages(e, id, array, imageFile){
+    uploadImages(e, id, array, imageFile) {
       uploadImage.onInputChange(e, id, array, imageFile);
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
     },
-  }
-}
-
+  },
+};
 </script>
 
 <style scoped>
-
 .WorkBody {
   width: 100%;
   height: 80%;
@@ -140,8 +199,8 @@ export default {
   border-radius: 2%;
 }
 
-input:focus{
-    outline: none;
+input:focus {
+  outline: none;
 }
 
 #doneList {
@@ -151,7 +210,7 @@ input:focus{
   grid-row-end: 2;
   height: 95%;
   width: 90%;
-  overflow:auto;
+  overflow: auto;
   margin: auto;
   top: 0;
   left: 0;
@@ -223,7 +282,6 @@ input:focus{
   grid-row-start: 2;
   grid-row-end: 3;
   overflow: auto;
-
 }
 
 .datas {
@@ -232,9 +290,10 @@ input:focus{
   height: 10vh;
   margin-left: 10%;
   border: none;
+  overflow: auto;
   margin-top: 5%;
   display: grid;
-  grid-template-columns: 10% 65% 10% 15% ;
+  grid-template-columns: 10% 65% 10% 15%;
   grid-template-rows: 100%;
 }
 
@@ -245,7 +304,7 @@ input:focus{
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin:auto;
+  margin: auto;
   top: 0;
   bottom: 0;
 }
@@ -263,14 +322,14 @@ input:focus{
   font-size: 2vh;
   overflow: auto;
   border: none;
-  font-family: 'Nunito Sans';
+  font-family: "Nunito Sans";
   background-color: rgb(250, 250, 250);
   height: 100%;
   width: 100%;
 }
 
-.inputText {
-  cursor:pointer; 
+.inputText:hover {
+  cursor: grab;
 }
 
 #editToDoList {
@@ -319,15 +378,16 @@ input:focus{
   width: 30vh;
   height: 10vh;
   background-color: none;
-  margin-top:5%;
+  margin-top: 5%;
   width: 110%;
+  overflow: auto;
   display: grid;
   grid-template-columns: 10% 65% 10% 15%;
   grid-template-rows: 100%;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 2;  
+  grid-row-end: 2;
   border-radius: 5%;
 }
 
@@ -338,8 +398,8 @@ input:focus{
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 2;  
-  margin:auto;
+  grid-row-end: 2;
+  margin: auto;
   top: 0;
   bottom: 0;
 }
@@ -361,7 +421,7 @@ input:focus{
 }
 
 #doneLabels:hover {
-  cursor: pointer;
+  cursor: grab;
 }
 
 #doneImage {
@@ -408,22 +468,22 @@ input:focus{
   margin: auto;
   width: 35%;
   height: 35%;
-  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes scale-in-ver-bottom {
   0% {
     -webkit-transform: scaleY(0);
-            transform: scaleY(0);
+    transform: scaleY(0);
     -webkit-transform-origin: 0% 100%;
-            transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
     opacity: 1;
   }
   100% {
     -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
     -webkit-transform-origin: 0% 100%;
-            transform-origin: 0% 100%;
+    transform-origin: 0% 100%;
     opacity: 1;
   }
 }
@@ -452,11 +512,11 @@ input:focus{
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   margin: auto;
   width: 25%;
   height: 65%;
-  background-image: url('../assets/picture.png');
+  background-image: url("../assets/picture.png");
   background-repeat: no-repeat;
 }
 
@@ -469,7 +529,7 @@ input:focus{
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
-  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   margin: auto;
   width: 25%;
   height: 25%;
@@ -485,13 +545,14 @@ input:focus{
 }
 
 .imageInList {
- max-width: 100%;
- overflow: auto;
+  max-width: 100%;
+}
 
+.imageInList:hover {
+  cursor: grab;
 }
 
 #over {
   overflow: auto;
 }
-
 </style>
