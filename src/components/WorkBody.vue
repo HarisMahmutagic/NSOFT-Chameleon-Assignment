@@ -187,7 +187,7 @@ export default {
   grid-row-start: 1;
   grid-row-end: 2;
   height: 95%;
-  width: 100%;
+  width: 85%;
   margin: auto;
   top: 0;
   left: 0;
@@ -209,7 +209,7 @@ input:focus {
   grid-row-start: 1;
   grid-row-end: 2;
   height: 95%;
-  width: 90%;
+  width: 85%;
   overflow: auto;
   margin: auto;
   top: 0;
@@ -323,7 +323,7 @@ input:focus {
   overflow: auto;
   border: none;
   font-family: "Nunito Sans";
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(255, 255, 255);
   height: 100%;
   width: 100%;
 }
@@ -372,6 +372,7 @@ input:focus {
 
 #symbol:hover {
   cursor: pointer;
+  font-weight: bold;
 }
 
 #doneFinalList {
@@ -418,6 +419,7 @@ input:focus {
   overflow: auto;
   width: 100%;
   line-height: 400%;
+  background-color: rgb(255, 255, 255);
 }
 
 #doneLabels:hover {
