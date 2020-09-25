@@ -8,7 +8,7 @@
 #app {
   font-family: "Nunito Sans";
   height: 99%;
-  width: 100%;
+  width: 99%;
   top: 0;
   left: 0;
   right: 0;

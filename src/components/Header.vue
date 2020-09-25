@@ -15,8 +15,10 @@
     </div>
 
     <div id="Logout" v-if="LogoutActivate">
-      <img id="logoutImg" v-on:click="logOut" src="../assets/logout.jpg" />
-      <a id="logOutText" v-on:click="logOut">Log out</a>
+      <div id="logoutForm">
+        <img id="logoutImg" v-on:click="logOut" src="../assets/logout.jpg" />
+        <a id="logOutText" v-on:click="logOut">Log out</a>
+      </div>
     </div>
   </div>
 </template>
@@ -51,6 +53,9 @@ export default {
       this.fetchLogedIn(false);
       this.$router.push("/");
     },
+    test() {
+      console.log("test");
+    },
   },
 };
 </script>
@@ -69,6 +74,7 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
+  background-color: rgb(245, 245, 245);
 }
 
 #Avatar {
@@ -77,8 +83,9 @@ export default {
   grid-row-start: 1;
   grid-row-end: 2;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
+  background-color: rgb(245, 245, 245);
 }
 
 #Text {
@@ -121,15 +128,15 @@ export default {
 #logoimg {
   width: 20vh;
   height: 5vh;
-  margin-left: 40%;
+  margin-left: 20%;
   margin-top: 2%;
 }
 
 #userName {
   font-size: 2.3vh;
   margin: auto;
-  margin-right: 0%;
-  margin-top: 10%;
+  margin-right: 10%;
+  margin-top: 4%;
   font-weight: bolder;
   grid-column-start: 1;
   grid-column-end: 2;
@@ -139,14 +146,15 @@ export default {
 
 #userName:hover {
   cursor: pointer;
+  font-size: 2.5vh;
 }
 
 #avatar {
-  width: 4vh;
-  height: 4.8vh;
-  margin-left: 3%;
+  width: 8vh;
+  height: 8vh;
+  margin: auto;
+  margin-left: -20%;
   border-radius: 50%;
-  border: 0.1px solid rgb(221, 221, 221);
   background-color: rgb(240, 240, 240);
   margin-top: 3%;
   grid-column-start: 2;
@@ -157,14 +165,25 @@ export default {
 
 #avatar:hover {
   cursor: pointer;
+  box-shadow: 1px 2px 2px 1px grey;
+}
+
+#logoutForm {
+  width: 25%;
+  height: 50%;
+  margin-left: 50%;
+  box-shadow: 1px 4px 4px 1px rgb(223, 223, 223);
+}
+
+#logoutForm:hover {
+  cursor: pointer;
+  background-color: rgb(240, 240, 240);
 }
 
 #logoutImg {
   width: 3vh;
   height: 3vh;
-  border: 1px solid rgb(206, 206, 206);
-  border-radius: 5%;
-  margin-left: 30%;
+  margin-top: 5%;
 }
 
 #logoutImg:hover {
@@ -173,6 +192,9 @@ export default {
 
 #logOutText {
   font-size: 2vh;
+  margin-left: 5vh;
+  margin-top: -3vh;
+  display: flex;
 }
 
 #logOutText:hover {
@@ -180,7 +202,7 @@ export default {
 }
 
 #title {
-  margin-left: 40%;
+  margin-left: 20%;
   font-size: 2vh;
   font-weight: bolder;
   grid-column-start: 1;
@@ -190,7 +212,7 @@ export default {
 }
 
 #text {
-  margin-left: 40%;
+  margin-left: 20%;
   font-size: 1.7vh;
   color: grey;
   grid-column-start: 1;

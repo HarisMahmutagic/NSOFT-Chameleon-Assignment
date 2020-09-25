@@ -1,4 +1,5 @@
 const editMenuFunctions = {
+  // Clicking on three dots, user will open or close extra field for import image or delete one specific.
   editMenuOpenOrClose(array, id, array2) {
     for (let i = 0; i < array.length; i++) {
       if (array[i].id === id) {
@@ -12,6 +13,8 @@ const editMenuFunctions = {
       } else array2[i].editMenu = false;
     }
   },
+
+  // If we have extra field opened for one label. Clicking somewhere else, that extra field will close it self.
   close(array1, array2) {
     if (array1.length > 0) {
       for (let i = 0; i < array1.length; i++) {

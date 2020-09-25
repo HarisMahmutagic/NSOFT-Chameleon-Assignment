@@ -11,7 +11,12 @@
         +
       </div>
 
-      <draggable :list="toDoListDatas" group="tasks" id="content">
+      <draggable
+        :list="toDoListDatas"
+        group="datas"
+        :move="closeAndCheck"
+        id="content"
+      >
         <div class="datas" v-for="data in toDoListDatas" :key="data.id">
           <img
             id="checkboxInactive"
@@ -43,6 +48,8 @@
             }"
           >
             <label title="Add new Image" id="addPicture">
+              <img id="smallImage" src="../assets/picture.png" />
+              <a id="textImage">Image</a>
               <input
                 type="file"
                 id="inputForPicture"
@@ -52,25 +59,33 @@
                 "
               />
             </label>
-            <img
-              title="Delete"
-              id="deleteLabel1"
-              src="../assets/trash.png"
+            <label
+              id="delete1"
               v-on:click="deleteOneFromToDoList(toDoListDatas, data.id)"
-            />
+            >
+              <img title="Delete" id="deleteLabel1" src="../assets/trash.png" />
+              <a id="textDelete">Delete</a>
+            </label>
           </div>
         </div>
       </draggable>
     </div>
 
     <div id="doneList">
-      <div id="doneTitle">Done</div>
+      <div id="doneTitle">
+        <a id="doneT">Done</a>
+      </div>
 
       <div title="Delete all from Done List" id="recycle">
         <a id="symbol" v-on:click="deleteAllLabels(doneListDatas)">&#128465;</a>
       </div>
 
-      <draggable :list="doneListDatas" group="tasks" class="doneData">
+      <draggable
+        :list="doneListDatas"
+        group="datas"
+        :move="closeAndCheck"
+        class="doneData"
+      >
         <div id="doneFinalList" v-for="data in doneListDatas" :key="data.id">
           <img
             id="checkboxActive"
@@ -91,16 +106,14 @@
             "
           />
           <div
+            v-on:click="deleteOneFromToDoList(doneListDatas, data.id)"
             v-bind:class="{
               openDoneMenu: data.editMenu,
               closeDoneMenu: !data.editMenu,
             }"
           >
-            <img
-              id="deleteLabel"
-              src="../assets/trash.png"
-              v-on:click="deleteOneFromToDoList(doneListDatas, data.id)"
-            />
+            <img id="deleteLabel" src="../assets/trash.png" />
+            <a id="textDelete1">Delete</a>
           </div>
         </div>
       </draggable>
@@ -110,11 +123,13 @@
 
 <script>
 import draggable from "vuedraggable";
+
 import addButtonFunctions from "../components/Functions/addButtonFunctions";
 import editMenuFunctions from "../components/Functions/editMenuFunctions";
 import moveFunctions from "../components/Functions/moveFunctions";
 import deleteFunctions from "../components/Functions/deleteFunctions";
 import uploadImage from "../components/Functions/uploadImage";
+import { mapGetters } from "vuex";
 
 export default {
   name: "WorkBody",
@@ -129,13 +144,25 @@ export default {
       imageFile: [],
     };
   },
+  computed: mapGetters(["LogedIn"]),
+  created() {
+    // In local storage(vuex) we have one const "LogedIn". Default it's false.
+    // When user click to Login, it will become true.
+    // Since this is SPA application. There wont be any loading.
+    // In that case, user also wont be able to reload page.
+    // By clicking reload in "Workspace" will be automaticaly loged out.
+
+    if (this.LogedIn === false) {
+      this.$router.push("/");
+    }
+  },
+
   methods: {
     add(id, toDoDatas) {
       this.increasedId++;
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
       addButtonFunctions.addNewLabel(id, toDoDatas);
     },
-
     moveToDone(array1, id, array2) {
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
       moveFunctions.moveToDone(array1, id, array2);
@@ -163,6 +190,16 @@ export default {
       uploadImage.onInputChange(e, id, array, imageFile);
       editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
     },
+
+    close() {
+      editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
+    },
+    closeAndCheck(evt) {
+      editMenuFunctions.close(this.toDoListDatas, this.doneListDatas);
+      // Next will check if user are trying to move one empty label by dragging.
+      // If yes, dragging wont work. Label needs to have at least one character.
+      return evt.draggedContext.element.text.length > 0;
+    },
   },
 };
 </script>
@@ -170,7 +207,7 @@ export default {
 <style scoped>
 .WorkBody {
   width: 100%;
-  height: 80%;
+  height: 76%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
@@ -186,17 +223,14 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  height: 95%;
-  width: 85%;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width: 70%;
+  min-height: 98%;
+  margin-left: 20%;
   display: grid;
   grid-template-columns: 80% 20%;
-  grid-template-rows: 13% 87%;
+  grid-template-rows: 10vh 90%;
   border-radius: 2%;
+  background-color: rgb(245, 245, 245);
 }
 
 input:focus {
@@ -208,18 +242,14 @@ input:focus {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  height: 95%;
-  width: 85%;
-  overflow: auto;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  width: 73%;
+  min-height: 98%;
+  margin-left: 5%;
   border-radius: 2%;
+  background-color: rgb(245, 245, 245);
   display: grid;
   grid-template-columns: 80% 20%;
-  grid-template-rows: 16% 84%;
+  grid-template-rows: 10vh 90%;
 }
 
 .doneData {
@@ -227,14 +257,9 @@ input:focus {
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
-  width: 95%;
   margin-left: 10%;
-  height: 6vh;
-  line-height: 350%;
-}
-
-.doneDatas:hover {
-  cursor: pointer;
+  overflow: auto;
+  width: 115%;
 }
 
 #editDoneList {
@@ -275,25 +300,28 @@ input:focus {
 
 #plusButton:hover {
   cursor: pointer;
+  text-shadow: black 1px 1px;
 }
 #content {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+  border-top: 1px solid rgb(220, 220, 220);
   overflow: auto;
 }
 
 .datas {
-  border-radius: 5%;
-  width: 80%;
-  height: 10vh;
-  margin-left: 10%;
+  width: 90%;
+  background-color: white;
+  min-height: 8vh;
+  max-height: 500px;
+  margin-left: 4%;
   border: none;
-  overflow: auto;
   margin-top: 5%;
+  border-radius: 7%;
   display: grid;
-  grid-template-columns: 10% 65% 10% 15%;
+  grid-template-columns: 10% 78% 10% 2%;
   grid-template-rows: 100%;
 }
 
@@ -322,7 +350,6 @@ input:focus {
   font-size: 2vh;
   overflow: auto;
   border: none;
-  font-family: "Nunito Sans";
   background-color: rgb(255, 255, 255);
   height: 100%;
   width: 100%;
@@ -353,10 +380,12 @@ input:focus {
   grid-row-end: 2;
   font-size: 2.5vh;
   font-weight: bolder;
-  margin-left: 10%;
   margin-top: 2%;
+  border-bottom: 1px solid rgb(220, 220, 220);
 }
-
+#doneT {
+  margin-left: 10%;
+}
 #recycle {
   grid-column-start: 2;
   grid-column-end: 3;
@@ -364,6 +393,7 @@ input:focus {
   grid-row-end: 2;
   text-align: center;
   line-height: 300%;
+  border-bottom: 1px solid rgb(220, 220, 220);
 }
 
 #symbol {
@@ -376,20 +406,20 @@ input:focus {
 }
 
 #doneFinalList {
-  width: 30vh;
-  height: 10vh;
-  background-color: none;
+  width: 92%;
+  min-height: 8vh;
+  max-height: 500px;
   margin-top: 5%;
-  width: 110%;
-  overflow: auto;
   display: grid;
-  grid-template-columns: 10% 65% 10% 15%;
+  grid-template-columns: 10% 78% 10% 2%;
   grid-template-rows: 100%;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  border-radius: 5%;
+  border-radius: 7%;
+  background-color: white;
+  overflow: auto;
 }
 
 #checkboxActive {
@@ -436,7 +466,7 @@ input:focus {
 
 #openMenu {
   width: 7vh;
-  height: 6vh;
+  height: 7vh;
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 50% 50%;
@@ -451,11 +481,18 @@ input:focus {
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
-  width: 7vh;
-  height: 7vh;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
+  align-content: center;
+  position: absolute;
+  margin-left: 17%;
+  background-color: white;
+  width: 20vh;
+  box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.openDoneMenu:hover {
+  cursor: pointer;
+  background-color: rgb(230, 230, 230);
 }
 
 .closeDoneMenu {
@@ -467,9 +504,9 @@ input:focus {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin: auto;
-  width: 35%;
-  height: 35%;
+  margin-top: -5%;
+  width: 3vh;
+  height: 3.5vh;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -492,7 +529,6 @@ input:focus {
 
 #deleteLabel:hover {
   cursor: pointer;
-  background-color: rgb(123, 185, 255);
 }
 
 .openToDoMenu {
@@ -500,9 +536,16 @@ input:focus {
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
+  align-content: center;
+  position: absolute;
+  margin-left: 17%;
+  background-color: white;
+  width: 20vh;
+  box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 55% 45%;
 }
 
 .closeToDoMenu {
@@ -514,32 +557,17 @@ input:focus {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  margin: auto;
-  width: 25%;
-  height: 65%;
-  background-image: url("../assets/picture.png");
-  background-repeat: no-repeat;
+  background-color: white;
+  margin-bottom: 2%;
+  display: grid;
+  border-bottom: 1px solid rgb(220, 220, 220);
+  grid-template-columns: 20% 40% 40%;
+  grid-template-rows: 100%;
 }
 
 #addPicture:hover {
   cursor: pointer;
-}
-
-#deleteLabel1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  margin: auto;
-  width: 25%;
-  height: 25%;
-}
-
-#deleteLabel1:hover {
-  cursor: pointer;
-  background-color: rgb(123, 185, 255);
+  background-color: rgb(230, 230, 230);
 }
 
 #inputForPicture {
@@ -548,6 +576,7 @@ input:focus {
 
 .imageInList {
   max-width: 100%;
+  margin: auto;
 }
 
 .imageInList:hover {
@@ -556,5 +585,59 @@ input:focus {
 
 #over {
   overflow: auto;
+}
+
+#smallImage {
+  width: 4vh;
+  height: 3vh;
+  margin-left: 2%;
+  margin: auto;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#textImage {
+  font-size: 3vh;
+  margin: auto;
+  margin-left: 5%;
+  margin-top: 5%;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#delete1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  height: 100%;
+}
+
+#delete1:hover {
+  cursor: pointer;
+  background-color: rgb(230, 230, 230);
+}
+
+#deleteLabel1 {
+  width: 3vh;
+  height: 3vh;
+  margin-top: -5%;
+}
+
+#textDelete {
+  font-size: 3vh;
+  margin: auto;
+  margin-left: 5%;
+  margin-top: -5%;
+}
+
+#textDelete1 {
+  font-size: 3vh;
+  margin: auto;
+  margin-left: 5%;
 }
 </style>

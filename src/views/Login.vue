@@ -4,7 +4,7 @@
 
     <div id="emailForm">
       <md-field>
-        <label>Email</label>
+        <label id="emailLabel">Email</label>
         <md-input v-model="EmailAddress" id="emailField"></md-input>
         <span id="validEmail" v-if="validEmail === false"
           >Email is required</span
@@ -17,7 +17,7 @@
 
     <div id="passwordForm">
       <md-field>
-        <label>Password</label>
+        <label id="passwordLabel">Password</label>
         <md-input
           type="password"
           v-model="Password"
@@ -174,6 +174,8 @@ export default {
 
 #checkRemember {
   font-size: 2vh;
+  margin-left: 1%;
+  color: grey;
 }
 
 #checkRemember:hover {
@@ -195,9 +197,8 @@ export default {
   grid-row-start: 6;
   grid-row-end: 7;
   font-size: 2vh;
-  height: 4vh;
-  position: absolute;
-  right: 0;
+  color: grey;
+  text-align: right;
 }
 
 #forgotPassword:hover {
@@ -212,7 +213,7 @@ export default {
 }
 
 #loginButton {
-  width: 20vh;
+  width: 100%;
   height: 7vh;
   background-color: rgb(57, 57, 231);
   margin: auto;
@@ -220,7 +221,7 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  border-radius: 5%;
+  border-radius: 2%;
   color: white;
   font-size: 2.5vh;
   text-align: center;
@@ -230,5 +231,13 @@ export default {
 #loginButton:hover {
   background-color: rgb(93, 93, 228);
   cursor: pointer;
+}
+
+#emailLabel {
+  font-size: 2vh;
+}
+
+#passwordLabel {
+  font-size: 2vh;
 }
 </style>
