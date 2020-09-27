@@ -20,6 +20,22 @@
         <a id="logOutText" v-on:click="logOut">Log out</a>
       </div>
     </div>
+    <div id="openedLogoutScreenForMobile" v-if="MobileLogout">
+      <div id="closeScreen" v-on:click="closeMobileLogoutScreen"></div>
+      <div id="content">
+        <p id="userNameForMobile">{{ UserName }}</p>
+        <div id="logoutButtonForMobile">
+          <div id="logoutFormForMobile">
+            <img
+              id="logoutImgforMobile"
+              v-on:click="logOut"
+              src="../assets/logout.jpg"
+            />
+            <a id="logOutTextForMobile" v-on:click="logOut">Log out</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -32,6 +48,7 @@ export default {
   data() {
     return {
       LogoutActivate: false,
+      MobileLogout: false,
     };
   },
   computed: mapGetters(["UserName"]),
@@ -42,10 +59,20 @@ export default {
       "fetchRememberUser",
       "fetchLogedIn",
     ]),
+
+    // For the mobile screen clickng to avatar, right top corner, application will open new screen.
+    // For the computer screen, clickig to avatar or username, will be opened pop up button for logout.
+
     openLogoutLink() {
-      this.LogoutActivate = !this.LogoutActivate;
+      const mq = window.matchMedia("(max-width: 600px)");
+      if (mq.matches) {
+        this.MobileLogout = true;
+      } else {
+        this.LogoutActivate = !this.LogoutActivate;
+      }
     },
 
+    // Clicking to logout button, application will forget everything in vuex store and move user to login page
     logOut() {
       this.fetchEmailAddress("");
       this.fetchUserName("");
@@ -53,8 +80,9 @@ export default {
       this.fetchLogedIn(false);
       this.$router.push("/");
     },
-    test() {
-      console.log("test");
+    // Function works only for mobile screen ( Max- width 600px)
+    closeMobileLogoutScreen() {
+      this.MobileLogout = false;
     },
   },
 };
@@ -219,5 +247,194 @@ export default {
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+#openedLogoutScreenForMobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .Header {
+    width: 100%;
+    height: 20%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 50% 50%;
+  }
+
+  #Logo {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: rgb(245, 245, 245);
+  }
+
+  #Avatar {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: rgb(245, 245, 245);
+  }
+
+  #Text {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+  }
+
+  #Logout {
+    display: none;
+  }
+
+  #logoimg {
+    width: 30vw;
+    height: 10vw;
+    margin-left: 15%;
+    margin-top: 2%;
+  }
+
+  #userName {
+    display: none;
+  }
+
+  #avatar {
+    width: 20vw;
+    height: 15vw;
+    margin: auto;
+    margin-left: -100%;
+    border-radius: 50%;
+    background-color: rgb(240, 240, 240);
+    margin-top: 3%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  #logoutForm {
+    display: none;
+  }
+
+  #logoutImg {
+    display: none;
+  }
+
+  #logOutText {
+    font-size: 2vh;
+    margin-left: 5vh;
+    margin-top: -3vh;
+    display: flex;
+  }
+
+  #title {
+    margin-left: 10%;
+    font-size: 5vw;
+    font-weight: bolder;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  #text {
+    margin-left: 10%;
+    font-size: 4vw;
+    color: grey;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+  #openedLogoutScreenForMobile {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 100%;
+    animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+  @keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+      transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  #closeScreen {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: grey;
+    opacity: 0.9;
+  }
+
+  #content {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 80%;
+    background-color: white;
+  }
+
+  #userNameForMobile {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    color: grey;
+    font-size: 5vw;
+  }
+
+  #logoutButtonForMobile {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  #logoutFormForMobile {
+    width: 40%;
+    height: 7%;
+    margin-left: 50%;
+    box-shadow: 1px 4px 4px 1px rgb(223, 223, 223);
+    margin: auto;
+    left: 0;
+    right: 0;
+    margin-top: 70vh;
+  }
+
+  #logoutImgForMobile {
+    width: 3vw;
+    height: 3vw;
+    margin-top: 5%;
+  }
+
+  #logOutTextForMobile {
+    font-size: 5vw;
+    margin-left: 5vw;
+    margin-top: -3vw;
+  }
 }
 </style>

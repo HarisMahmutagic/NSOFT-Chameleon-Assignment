@@ -42,7 +42,7 @@
       >
     </div>
 
-    <label id="forgotPassword">Forgot password ?</label>
+    <label id="forgotPassword"><a id="textFP">Forgot password ?</a> </label>
 
     <div id="loginFooter">
       <div id="loginButton" v-on:click="signIn(EmailAddress, Password)">
@@ -176,6 +176,7 @@ export default {
   font-size: 2vh;
   margin-left: 1%;
   color: grey;
+  line-height: 250%;
 }
 
 #checkRemember:hover {
@@ -198,6 +199,7 @@ export default {
   grid-row-end: 7;
   font-size: 2vh;
   color: grey;
+  height: 100%;
   text-align: right;
 }
 
@@ -239,5 +241,139 @@ export default {
 
 #passwordLabel {
   font-size: 2vh;
+}
+
+#textFP {
+  line-height: 250%;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .loginForm {
+    width: 80vw;
+    height: 80vw;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 25% 15% 5% 15% 10% 10% 20%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+  }
+
+  #logo {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  #emailForm {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  #validEmail {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    font-size: 2.1vw;
+    color: red;
+  }
+
+  #passwordForm {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+
+  #passwordField {
+    cursor: pointer;
+  }
+
+  #validPassword {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    font-size: 2.1vw;
+    margin-right: 5%;
+    color: red;
+  }
+
+  #rememberUser {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 6;
+    grid-row-end: 7;
+  }
+
+  #checkRemember {
+    font-size: 3vw;
+    margin-left: 1%;
+    color: grey;
+    line-height: 350%;
+  }
+
+  #checkBoxRemember {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  #forgotPassword {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 6;
+    grid-row-end: 7;
+    font-size: 3vw;
+    color: grey;
+    text-align: right;
+    height: 100%;
+  }
+
+  #loginFooter {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 7;
+    grid-row-end: 8;
+  }
+
+  #loginButton {
+    width: 100%;
+    height: 7vw;
+    background-color: rgb(57, 57, 231);
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 2%;
+    color: white;
+    font-size: 3vw;
+    text-align: center;
+    line-height: 250%;
+  }
+
+  #emailLabel {
+    font-size: 2.2vw;
+  }
+
+  #passwordLabel {
+    font-size: 2.2vw;
+  }
+
+  #textFP {
+    line-height: 350%;
+  }
 }
 </style>

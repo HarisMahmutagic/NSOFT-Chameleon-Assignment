@@ -146,7 +146,7 @@ export default {
   },
   computed: mapGetters(["LogedIn"]),
   created() {
-    // In local storage(vuex) we have one const "LogedIn". Default it's false.
+    // In local storage(vuex) we have const "LogedIn". Default it's false.
     // When user click to Login, it will become true.
     // Since this is SPA application. There wont be any loading.
     // In that case, user also wont be able to reload page.
@@ -207,7 +207,7 @@ export default {
 <style scoped>
 .WorkBody {
   width: 100%;
-  height: 76%;
+  min-height: 76%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
@@ -258,7 +258,6 @@ input:focus {
   grid-row-start: 2;
   grid-row-end: 3;
   margin-left: 10%;
-  overflow: auto;
   width: 115%;
 }
 
@@ -308,7 +307,6 @@ input:focus {
   grid-row-start: 2;
   grid-row-end: 3;
   border-top: 1px solid rgb(220, 220, 220);
-  overflow: auto;
 }
 
 .datas {
@@ -419,7 +417,6 @@ input:focus {
   grid-row-end: 2;
   border-radius: 7%;
   background-color: white;
-  overflow: auto;
 }
 
 #checkboxActive {
@@ -464,28 +461,18 @@ input:focus {
   overflow: auto;
 }
 
-#openMenu {
-  width: 7vh;
-  height: 7vh;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 50% 50%;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
 .openDoneMenu {
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
   align-content: center;
-  position: absolute;
-  margin-left: 17%;
+  position: relative;
+  right: 2200%;
+  bottom: -100%;
   background-color: white;
   width: 20vh;
+  height: 4.5vh;
   box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -506,7 +493,7 @@ input:focus {
   grid-row-end: 2;
   margin-top: -5%;
   width: 3vh;
-  height: 3.5vh;
+  height: 3vh;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -536,11 +523,13 @@ input:focus {
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
+  position: relative;
   align-content: center;
-  position: absolute;
-  margin-left: 17%;
+  right: 2200%;
+  bottom: -100%;
   background-color: white;
   width: 20vh;
+  height: 8vh;
   box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   display: grid;
@@ -625,7 +614,8 @@ input:focus {
 #deleteLabel1 {
   width: 3vh;
   height: 3vh;
-  margin-top: -5%;
+  margin-top: -9%;
+  margin-left: 1%;
 }
 
 #textDelete {
@@ -639,5 +629,384 @@ input:focus {
   font-size: 3vh;
   margin: auto;
   margin-left: 5%;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .WorkBody {
+    width: 100%;
+    min-height: 80%;
+    flex-direction: column;
+    overflow: auto;
+    display: flex;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  #toDoList {
+    grid-auto-rows: 100%;
+    width: 95%;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+    margin: auto;
+    display: grid;
+    grid-row-gap: 10px;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 10vw 90%;
+    border-radius: 2%;
+    background-color: rgb(245, 245, 245);
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  #doneList {
+    width: 95%;
+    min-height: 100%;
+    border-radius: 2%;
+    margin: auto;
+    margin-top: 5%;
+    background-color: rgb(245, 245, 245);
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 10vh 90%;
+  }
+  #title {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 4vw;
+    font-weight: bolder;
+    margin-left: 10%;
+    margin-top: 2%;
+  }
+
+  #plusButton {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 6vw;
+    font-weight: bolder;
+    margin-top: 1%;
+    color: grey;
+  }
+
+  #content {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    border-top: 1px solid rgb(220, 220, 220);
+  }
+
+  .datas {
+    width: 90%;
+    background-color: white;
+    min-height: 8vw;
+    max-height: 500px;
+    margin-left: 4%;
+    border: none;
+    margin-top: 5%;
+    border-radius: 7%;
+    display: grid;
+    grid-template-columns: 10% 78% 10% 2%;
+    grid-template-rows: 100%;
+  }
+
+  #checkboxInactive {
+    width: 3vw;
+    height: 3vw;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+  }
+
+  .inputText {
+    margin-left: 2%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 3vw;
+    overflow: auto;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+  }
+
+  #editToDoList {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    height: 4vw;
+    width: 5vw;
+  }
+
+  .doneData {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-left: 10%;
+    width: 115%;
+  }
+
+  #editDoneList {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    height: 4vw;
+    width: 5vw;
+  }
+
+  #editToDoList:hover {
+    cursor: pointer;
+  }
+
+  #doneTitle {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 4vw;
+    font-weight: bolder;
+    margin-top: 2%;
+    border-bottom: 1px solid rgb(220, 220, 220);
+  }
+  #doneT {
+    margin-left: 10%;
+  }
+  #recycle {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    line-height: 300%;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    text-align: start;
+  }
+
+  #symbol {
+    font-size: 6vw;
+  }
+
+  #symbol:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #doneFinalList {
+    width: 92%;
+    min-height: 8vw;
+    max-height: 500px;
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: 10% 78% 10% 2%;
+    grid-template-rows: 100%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    border-radius: 7%;
+    background-color: white;
+  }
+
+  #checkboxActive {
+    width: 2vw;
+    height: 2vw;
+    margin-left: 2%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+  }
+
+  #doneLabels {
+    font-size: 3vw;
+    margin-left: 2%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    overflow: auto;
+    width: 100%;
+    line-height: 400%;
+    background-color: rgb(255, 255, 255);
+  }
+
+  #doneImage {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    overflow: auto;
+  }
+
+  .openDoneMenu {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-content: center;
+    margin-left: 17%;
+    background-color: white;
+    width: 20vw;
+    height: 5vw;
+    box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+    animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+  }
+
+  .closeDoneMenu {
+    display: none;
+  }
+
+  #deleteLabel {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    position: absolute;
+    top: 35%;
+    width: 3vw;
+    height: 3.5vw;
+    animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+  }
+
+  @keyframes scale-in-ver-bottom {
+    0% {
+      -webkit-transform: scaleY(0);
+      transform: scaleY(0);
+      -webkit-transform-origin: 0% 100%;
+      transform-origin: 0% 100%;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+      transform: scaleY(1);
+      -webkit-transform-origin: 0% 100%;
+      transform-origin: 0% 100%;
+      opacity: 1;
+    }
+  }
+
+  .openToDoMenu {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-content: center;
+    margin-left: 50%;
+    margin-top: 0%;
+    background-color: white;
+    width: 20vw;
+    height: 8vw;
+    box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+    animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+  }
+
+  .closeToDoMenu {
+    display: none;
+  }
+
+  #addPicture {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: white;
+    margin-bottom: 2%;
+    display: grid;
+    border-bottom: 1px solid rgb(220, 220, 220);
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: 100%;
+  }
+
+  #inputForPicture {
+    display: none;
+  }
+
+  .imageInList {
+    max-width: 100%;
+    margin: auto;
+  }
+
+  #over {
+    overflow: auto;
+  }
+
+  #smallImage {
+    width: 3vw;
+    height: 3vw;
+    margin-left: 2%;
+    margin: auto;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  #textImage {
+    font-size: 3vw;
+    line-height: 100%;
+    margin: auto;
+    margin-left: 5%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  #delete1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    height: 100%;
+  }
+
+  #deleteLabel1 {
+    position: absolute;
+    width: 3.5vw;
+    height: 3.5vw;
+    top: 72%;
+  }
+
+  #textDelete {
+    font-size: 3vw;
+    position: absolute;
+    margin-left: 22%;
+    margin-top: 1%;
+  }
+
+  #textDelete1 {
+    font-size: 3vw;
+    position: absolute;
+    left: 15%;
+    top: 20%;
+  }
 }
 </style>
