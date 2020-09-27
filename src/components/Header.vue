@@ -102,7 +102,7 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(220, 220, 220);
 }
 
 #Avatar {
@@ -113,7 +113,7 @@ export default {
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(220, 220, 220);
 }
 
 #Text {
@@ -267,7 +267,7 @@ export default {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(220, 220, 220);
   }
 
   #Avatar {
@@ -275,7 +275,7 @@ export default {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(220, 220, 220);
   }
 
   #Text {
@@ -305,7 +305,7 @@ export default {
 
   #avatar {
     width: 15vw;
-    height: 12vw;
+    height: 10vw;
     margin: auto;
     margin-left: -100%;
     border-radius: 50%;

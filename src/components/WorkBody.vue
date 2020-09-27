@@ -234,7 +234,7 @@ export default {
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
   border-radius: 2%;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(220, 220, 220);
 }
 
 input:focus {
@@ -250,7 +250,7 @@ input:focus {
   min-height: 98%;
   margin-left: 5%;
   border-radius: 2%;
-  background-color: rgb(205, 205, 205);
+  background-color: rgb(220, 220, 220);
   display: grid;
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
@@ -662,7 +662,7 @@ input:focus {
     grid-template-columns: 80% 20%;
     grid-template-rows: 10vw 90%;
     border-radius: 2%;
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(220, 220, 220);
   }
 
   input:focus {
@@ -675,7 +675,7 @@ input:focus {
     border-radius: 2%;
     margin: auto;
     margin-top: 5%;
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(220, 220, 220);
     display: grid;
     grid-template-columns: 80% 20%;
     grid-template-rows: 10vw 90%;
