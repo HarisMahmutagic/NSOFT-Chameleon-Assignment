@@ -58,6 +58,8 @@ Also user can just drag label and drop it to the To-Do field.
 On the right side of each label is button (3 dots).
 Clicking on it will be shown pop up field for delete just one label..
 
+Reload page is not allowed. If user click reload will be automatically loged out.
+
 ## Project setup
 
 ```
