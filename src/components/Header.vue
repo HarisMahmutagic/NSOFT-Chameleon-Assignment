@@ -205,7 +205,7 @@ export default {
 
 #logoutForm:hover {
   cursor: pointer;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(230, 230, 230);
 }
 
 #logoutImg {
@@ -304,8 +304,8 @@ export default {
   }
 
   #avatar {
-    width: 20vw;
-    height: 15vw;
+    width: 15vw;
+    height: 12vw;
     margin: auto;
     margin-left: -100%;
     border-radius: 50%;
