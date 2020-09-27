@@ -32,10 +32,10 @@ Workbody has two lists.
 
 On the left side is To-Do list:
 
-> > The user will be able to add new labels in to the To-Do list.
-> > The labels in to the To-Do list are editable.
-> > Also can add picture instead of text.
-> > And may eventually be deleted.
+The user will be able to add new labels in to the To-Do list.
+The labels in to the To-Do list are editable.
+Also can add picture instead of text.
+And may eventually be deleted.
 
 On the left side of each label is checkbox. Clicking on it the label will be considered as done.
 And will be automatically moved to Done list.

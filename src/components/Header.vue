@@ -102,7 +102,7 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(230, 230, 230);
 }
 
 #Avatar {
@@ -113,7 +113,7 @@ export default {
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(230, 230, 230);
 }
 
 #Text {
@@ -267,7 +267,7 @@ export default {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(240, 240, 240);
   }
 
   #Avatar {

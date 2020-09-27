@@ -77,7 +77,11 @@
       </div>
 
       <div title="Delete all from Done List" id="recycle">
-        <a id="symbol" v-on:click="deleteAllLabels(doneListDatas)">&#128465;</a>
+        <img
+          src="../assets/trashcan.png"
+          id="symbol"
+          v-on:click="deleteAllLabels(doneListDatas)"
+        />
       </div>
 
       <draggable
@@ -230,7 +234,7 @@ export default {
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
   border-radius: 2%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(230, 230, 230);
 }
 
 input:focus {
@@ -246,7 +250,7 @@ input:focus {
   min-height: 98%;
   margin-left: 5%;
   border-radius: 2%;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(230, 230, 230);
   display: grid;
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
@@ -395,12 +399,12 @@ input:focus {
 }
 
 #symbol {
-  font-size: 4vh;
+  height: 4vh;
+  width: 4vh;
 }
 
 #symbol:hover {
   cursor: pointer;
-  font-weight: bold;
 }
 
 #doneFinalList {
@@ -566,6 +570,7 @@ input:focus {
 .imageInList {
   max-width: 100%;
   margin: auto;
+  max-height: 500px;
 }
 
 .imageInList:hover {
@@ -657,7 +662,7 @@ input:focus {
     grid-template-columns: 80% 20%;
     grid-template-rows: 10vw 90%;
     border-radius: 2%;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(230, 230, 230);
   }
 
   input:focus {
@@ -670,10 +675,10 @@ input:focus {
     border-radius: 2%;
     margin: auto;
     margin-top: 5%;
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(230, 230, 230);
     display: grid;
     grid-template-columns: 80% 20%;
-    grid-template-rows: 10vh 90%;
+    grid-template-rows: 10vw 90%;
   }
   #title {
     grid-column-start: 1;
@@ -796,24 +801,24 @@ input:focus {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    line-height: 300%;
+    line-height: 150%;
     border-bottom: 1px solid rgb(220, 220, 220);
     text-align: start;
   }
 
   #symbol {
-    font-size: 6vw;
+    height: 4vw;
+    width: 4vw;
   }
 
   #symbol:hover {
     cursor: pointer;
-    font-weight: bold;
   }
 
   #doneFinalList {
     width: 92%;
     min-height: 8vw;
-    max-height: 500px;
+    max-height: 300px;
     margin-top: 5%;
     display: grid;
     grid-template-columns: 10% 78% 10% 2%;
@@ -848,7 +853,7 @@ input:focus {
     grid-row-end: 2;
     overflow: auto;
     width: 100%;
-    line-height: 400%;
+    line-height: 250%;
     background-color: rgb(255, 255, 255);
   }
 
@@ -952,6 +957,7 @@ input:focus {
   .imageInList {
     max-width: 100%;
     margin: auto;
+    max-height: 300px;
   }
 
   #over {
