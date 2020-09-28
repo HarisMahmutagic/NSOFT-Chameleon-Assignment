@@ -602,7 +602,7 @@ input:focus {
   font-size: 1.7vh;
   margin: auto;
   margin-left: 5%;
-  margin-top: 9%;
+  margin-top: 11%;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
