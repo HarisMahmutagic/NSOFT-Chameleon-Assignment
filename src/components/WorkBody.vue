@@ -3,12 +3,8 @@
     <div id="toDoList">
       <div id="title">To-do list</div>
 
-      <div
-        title="Add new label"
-        id="plusButton"
-        v-on:click="add(increasedId, toDoListDatas)"
-      >
-        +
+      <div title="Add new label" id="plusButton">
+        <div v-on:click="add(increasedId, toDoListDatas)" id="Plus">+</div>
       </div>
 
       <draggable
@@ -234,7 +230,7 @@ export default {
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
   border-radius: 2%;
-  background-color: rgb(220, 220, 220);
+  background-color: #f3f3fb;
 }
 
 input:focus {
@@ -250,7 +246,7 @@ input:focus {
   min-height: 98%;
   margin-left: 5%;
   border-radius: 2%;
-  background-color: rgb(220, 220, 220);
+  background-color: #f3f3fb;
   display: grid;
   grid-template-columns: 80% 20%;
   grid-template-rows: 10vh 90%;
@@ -271,8 +267,8 @@ input:focus {
   grid-row-start: 1;
   grid-row-end: 2;
   margin: auto;
-  height: 4vh;
-  width: 5vh;
+  height: 3vh;
+  width: 4vh;
 }
 
 #editDoneList:hover {
@@ -286,8 +282,8 @@ input:focus {
   grid-row-end: 2;
   font-size: 2.5vh;
   font-weight: bolder;
-  margin-left: 10%;
-  margin-top: 2%;
+  margin-left: 6%;
+  margin-top: 4%;
 }
 
 #plusButton {
@@ -295,16 +291,25 @@ input:focus {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  font-size: 4vh;
-  font-weight: bolder;
-  margin-top: 10%;
+  margin-top: 15%;
+  margin-left: 25%;
   color: grey;
 }
 
-#plusButton:hover {
-  cursor: pointer;
-  text-shadow: black 1px 1px;
+#Plus {
+  background-color: #e8ecec;
+  font-size: 5vh;
+  border-radius: 50%;
+  text-align: center;
+  width: 4.5vh;
+  height: 4.5vh;
+  line-height: 80%;
 }
+
+#Plus:hover {
+  cursor: pointer;
+}
+
 #content {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -367,8 +372,8 @@ input:focus {
   grid-row-start: 1;
   grid-row-end: 2;
   margin: auto;
-  height: 4vh;
-  width: 5vh;
+  height: 3vh;
+  width: 4vh;
 }
 
 #editToDoList:hover {
@@ -382,7 +387,7 @@ input:focus {
   grid-row-end: 2;
   font-size: 2.5vh;
   font-weight: bolder;
-  margin-top: 2%;
+  margin-top: 4%;
   border-bottom: 1px solid rgb(220, 220, 220);
 }
 #doneT {
@@ -394,7 +399,7 @@ input:focus {
   grid-row-start: 1;
   grid-row-end: 2;
   text-align: center;
-  line-height: 300%;
+  line-height: 8vh;
   border-bottom: 1px solid rgb(220, 220, 220);
 }
 
@@ -477,7 +482,7 @@ input:focus {
   background-color: white;
   width: 20vh;
   height: 4.5vh;
-  box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+  box-shadow: 0px 5px 5px 3px rgb(200, 200, 200);
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -495,9 +500,10 @@ input:focus {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  margin-top: -5%;
-  width: 3vh;
-  height: 3vh;
+  position: fixed;
+  margin-top: 4%;
+  width: 2.5vh;
+  height: 2.5vh;
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -534,7 +540,7 @@ input:focus {
   background-color: white;
   width: 20vh;
   height: 8vh;
-  box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+  box-shadow: 0px 5px 5px 3px rgb(200, 200, 200);
   animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   display: grid;
   grid-template-columns: 100%;
@@ -582,8 +588,8 @@ input:focus {
 }
 
 #smallImage {
-  width: 4vh;
-  height: 3vh;
+  width: 3vh;
+  height: 2.5vh;
   margin-left: 2%;
   margin: auto;
   grid-column-start: 1;
@@ -593,10 +599,10 @@ input:focus {
 }
 
 #textImage {
-  font-size: 3vh;
+  font-size: 1.7vh;
   margin: auto;
   margin-left: 5%;
-  margin-top: 5%;
+  margin-top: 9%;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -617,29 +623,31 @@ input:focus {
 }
 
 #deleteLabel1 {
-  width: 3vh;
-  height: 3vh;
-  margin-top: -9%;
-  margin-left: 1%;
+  width: 2.5vh;
+  height: 2.5vh;
+  position: fixed;
+  margin-left: 3%;
 }
 
 #textDelete {
-  font-size: 3vh;
+  font-size: 1.7vh;
   margin: auto;
-  margin-left: 5%;
-  margin-top: -5%;
+  margin-left: 21%;
+  position: fixed;
+  margin-top: 2%;
 }
 
 #textDelete1 {
-  font-size: 3vh;
-  margin: auto;
-  margin-left: 5%;
+  font-size: 1.7vh;
+  margin-left: 18%;
+  position: fixed;
+  margin-top: 5%;
 }
 
 @media screen and (max-width: 600px) and (orientation: portrait) {
   .WorkBody {
     width: 100%;
-    min-height: 80%;
+    min-height: 75%;
     flex-direction: column;
     overflow: auto;
     display: flex;
@@ -662,7 +670,7 @@ input:focus {
     grid-template-columns: 80% 20%;
     grid-template-rows: 10vw 90%;
     border-radius: 2%;
-    background-color: rgb(220, 220, 220);
+    background-color: #f3f3fb;
   }
 
   input:focus {
@@ -675,10 +683,10 @@ input:focus {
     border-radius: 2%;
     margin: auto;
     margin-top: 5%;
-    background-color: rgb(220, 220, 220);
+    background-color: #f3f3fb;
     display: grid;
     grid-template-columns: 80% 20%;
-    grid-template-rows: 10vw 90%;
+    grid-template-rows: 13vw 90%;
   }
   #title {
     grid-column-start: 1;
@@ -688,7 +696,7 @@ input:focus {
     font-size: 4vw;
     font-weight: bolder;
     margin-left: 10%;
-    margin-top: 2%;
+    margin-top: 5%;
   }
 
   #plusButton {
@@ -698,10 +706,21 @@ input:focus {
     grid-row-end: 2;
     font-size: 6vw;
     font-weight: bolder;
-    margin-top: 1%;
+    margin-top: 15%;
     color: grey;
   }
 
+  #Plus {
+    background-color: rgb(221, 221, 221);
+    font-size: 6vw;
+    font-weight: bolder;
+    border-radius: 50%;
+    text-align: center;
+    width: 7vw;
+    height: 7vw;
+    line-height: 110%;
+    text-align: center;
+  }
   #content {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -790,7 +809,7 @@ input:focus {
     grid-row-end: 2;
     font-size: 4vw;
     font-weight: bolder;
-    margin-top: 2%;
+    margin-top: 5%;
     border-bottom: 1px solid rgb(220, 220, 220);
   }
   #doneT {
@@ -804,6 +823,8 @@ input:focus {
     line-height: 150%;
     border-bottom: 1px solid rgb(220, 220, 220);
     text-align: start;
+    margin-top: 15%;
+    margin-left: 30%;
   }
 
   #symbol {
@@ -832,8 +853,8 @@ input:focus {
   }
 
   #checkboxActive {
-    width: 2vw;
-    height: 2vw;
+    width: 3vw;
+    height: 3vw;
     margin-left: 2%;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -875,7 +896,7 @@ input:focus {
     background-color: white;
     width: 20vw;
     height: 5vw;
-    box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+    box-shadow: 0px 5px 5px 3px rgb(200, 200, 200);
     animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
   }
@@ -889,9 +910,9 @@ input:focus {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    position: absolute;
-    top: 35%;
-    width: 3vw;
+    position: fixed;
+    margin-top: 5%;
+    width: 3.5vw;
     height: 3.5vw;
     animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
@@ -925,7 +946,7 @@ input:focus {
     background-color: white;
     width: 20vw;
     height: 8vw;
-    box-shadow: 0px 5px 5px 3px rgb(221, 221, 221);
+    box-shadow: 0px 5px 5px 3px rgb(200, 200, 200);
     animation: scale-in-ver-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
     display: grid;
@@ -943,7 +964,6 @@ input:focus {
     grid-row-start: 1;
     grid-row-end: 2;
     background-color: white;
-    margin-bottom: 2%;
     display: grid;
     border-bottom: 1px solid rgb(220, 220, 220);
     grid-template-columns: 20% 40% 40%;
@@ -995,24 +1015,25 @@ input:focus {
   }
 
   #deleteLabel1 {
-    position: absolute;
+    position: fixed;
     width: 3.5vw;
     height: 3.5vw;
-    top: 72%;
+    left: -2%;
+    top: 50%;
   }
 
   #textDelete {
     font-size: 3vw;
     position: absolute;
     margin-left: 22%;
-    margin-top: 1%;
+    margin-top: -2%;
   }
 
   #textDelete1 {
     font-size: 3vw;
-    position: absolute;
-    left: 15%;
-    top: 20%;
+    position: fixed;
+    left: 5%;
+    top: -5%;
   }
 }
 </style>

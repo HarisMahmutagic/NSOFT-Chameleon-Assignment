@@ -102,7 +102,7 @@ export default {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  background-color: rgb(220, 220, 220);
+  background-color: #f3f3fb;
 }
 
 #Avatar {
@@ -113,7 +113,7 @@ export default {
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 100%;
-  background-color: rgb(220, 220, 220);
+  background-color: #f3f3fb;
 }
 
 #Text {
@@ -154,16 +154,17 @@ export default {
 }
 
 #logoimg {
-  width: 20vh;
+  width: 17vh;
   height: 5vh;
-  margin-left: 20%;
-  margin-top: 2%;
+  margin-left: 10%;
+  margin-top: 2vh;
+  position: fixed;
 }
 
 #userName {
   font-size: 2.3vh;
   margin: auto;
-  margin-right: 10%;
+  margin-right: 5%;
   margin-top: 4%;
   font-weight: bolder;
   grid-column-start: 1;
@@ -181,9 +182,9 @@ export default {
   width: 8vh;
   height: 8vh;
   margin: auto;
-  margin-left: -20%;
+  margin-left: 0%;
   border-radius: 50%;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(245, 245, 245);
   margin-top: 3%;
   grid-column-start: 2;
   grid-column-end: 3;
@@ -199,13 +200,13 @@ export default {
 #logoutForm {
   width: 25%;
   height: 50%;
-  margin-left: 50%;
+  margin-left: 53%;
   box-shadow: 1px 4px 4px 1px rgb(223, 223, 223);
 }
 
 #logoutForm:hover {
   cursor: pointer;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(245, 245, 245);
 }
 
 #logoutImg {
@@ -231,6 +232,7 @@ export default {
 
 #title {
   margin-left: 20%;
+  margin-top: 2%;
   font-size: 2vh;
   font-weight: bolder;
   grid-column-start: 1;
@@ -256,7 +258,7 @@ export default {
 @media screen and (max-width: 600px) and (orientation: portrait) {
   .Header {
     width: 100%;
-    height: 20%;
+    height: 25%;
     display: grid;
     grid-template-columns: 70% 30%;
     grid-template-rows: 50% 50%;
@@ -267,7 +269,7 @@ export default {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: rgb(220, 220, 220);
+    background-color: #f3f3fb;
   }
 
   #Avatar {
@@ -275,7 +277,7 @@ export default {
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: rgb(220, 220, 220);
+    background-color: #f3f3fb;
   }
 
   #Text {
@@ -293,10 +295,8 @@ export default {
   }
 
   #logoimg {
-    width: 30vw;
-    height: 10vw;
-    margin-left: 15%;
-    margin-top: 2%;
+    margin-left: 4vw;
+    margin-top: 4vw;
   }
 
   #userName {
@@ -309,8 +309,8 @@ export default {
     margin: auto;
     margin-left: -100%;
     border-radius: 50%;
-    background-color: rgb(240, 240, 240);
-    margin-top: 3%;
+    background-color: rgb(245, 245, 245);
+    margin-top: 50%;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -333,7 +333,8 @@ export default {
   }
 
   #title {
-    margin-left: 10%;
+    margin-left: 3%;
+    margin-top: 4%;
     font-size: 5vw;
     font-weight: bolder;
     grid-column-start: 1;
@@ -343,7 +344,8 @@ export default {
   }
 
   #text {
-    margin-left: 10%;
+    margin-left: 3%;
+    margin-top: 2%;
     font-size: 4vw;
     color: grey;
     grid-column-start: 1;

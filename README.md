@@ -1,7 +1,20 @@
+## Project setup
+
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+
+```
+npm run serve
+```
+
 # chameleonassignment
 
 This application is SPA app, which have 2 pages, "Login" and "Workspace".
 It's important to note, there is also a mobile version ( max- width of device 600px).
+
 First page would be Login page.
 That would be ordinary login form.
 User has to enter email address and password.
@@ -59,15 +72,3 @@ On the right side of each label is button (3 dots).
 Clicking on it will be shown pop up field for delete just one label..
 
 Reload page is not allowed. If user click reload will be automatically loged out.
-
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```

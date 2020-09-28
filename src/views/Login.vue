@@ -228,6 +228,7 @@ export default {
   font-size: 2.5vh;
   text-align: center;
   line-height: 250%;
+  box-shadow: 0px 15px 20px 0px rgb(199, 199, 255);
 }
 
 #loginButton:hover {
@@ -362,6 +363,7 @@ export default {
     font-size: 3vw;
     text-align: center;
     line-height: 250%;
+    box-shadow: 0px 5px 8px 0px rgb(199, 199, 255);
   }
 
   #emailLabel {
